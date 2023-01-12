@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <h1>삭제페이지</h1>
+        <h2>{{ onoff.id }}</h2>
+        <form action="{% url 'delete_onoff' onoff.id %}" method="POST"> {% csrf_token %}
+            <p>제목 :{{ onoff.title }}</p>
+            <p>비디오ID :{{ onoff.vodeo_id }}</p>
+            <p>동작 시간 :{{ onoff.work_time }}</p>
+            <p>현재 상태 :{{ onoff.privacy_status }}</p>
+            <button type="submit">삭제하기</button>
+        </form>
+    </body>
+</html>

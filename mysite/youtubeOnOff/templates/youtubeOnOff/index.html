@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>youtubeOnOffList</title>
+</head>
+<body>
+    <table border="1" bordercolor="blue" width ="500" height="300" align = "center" >
+        <tr bgcolor="blue" align ="center">
+        <p><th colspan = "6" span style="color:white">유투브 OnOff 목록</th></p>
+        </tr>
+        <tr>
+            <tr align = "center" bgcolor="skybule">
+                <td > 제목</td>
+                <td > 영상 ID</td>
+                <td > 작업시간</td>
+                <td > 상태</td>
+            </tr>
+        </tr>
+        {% for onoff in on_off_list.all  %}
+        <tr align="center">
+            <td >{{onoff.title}} </td>            <!--영상 제목-->
+            <td >{{onoff.video_id}} </td>         <!--영상 ID-->  
+            {% load tz %}
+            {% timezone 'Asia/Seoul' %}
+            <td >{{onoff.work_time|date:'Y-m-d A:h:i'}} </td>  <!--작업시간-->
+            {% endtimezone %}
+            {% if onoff.privacy_status == 'private' %}
+            <td>비공개</td>
+            {% else %}
+            <td>일부공개</td>
+            {% endif %}
+            <td><a href="{% url 'edit_onoff' onoff.id %}">수정</a></td>
+            <td><a href="{% url 'delete_onoff' onoff.id %}">삭제</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p align="center">
+        <button onclick="location.href='create_onoff'">추가</button>
+    </p>
+</body>
+</html>

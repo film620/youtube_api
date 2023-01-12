@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>수정페이지</h1>
+    <h2>{{ onoff.id }}</h2>
+    <form action="{% url 'edit_onoff' onoff.id %}" method="POST"> {% csrf_token %}
+        <p style="display: inline;">제목</p><input type="text" name="title" title="제목" value={{ onoff.title }}><br/>
+        <p style="display: inline;">비디오ID</p><input type="text" name="video_id" title="비디오ID" value={{ onoff.video_id }}><br/>
+        {% load tz %}
+        {% timezone 'Asia/Seoul' %}
+        <p>작업시간: {{onoff.work_time}} </p>  <!--작업시간-->
+        {% endtimezone %}
+        <input type="datetime-local" name="work_time" title="동작시간" value={{ onoff.work_time }}><br/>
+        {% if onoff.privacy_status == 'private' %}
+        <p>현재 상태 : 비공개</p>
+        {% else %}
+        <p>현재 상태 : 일부공개</p>
+        {% endif %}
+        <select name="privacy_status"> 
+            <option value="private">비공개</option>
+            <option value="unlisted">일부공개</option>
+        </select><br/>
+        <button type="submit">수정하기</button>
+    </form>
+</body>
+</html>

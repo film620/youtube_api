@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create OnOff</title>
+</head>
+<body>
+    <h1>추가 하기</h1>
+    <form action="{% url 'create_onoff' %}" method="POST"> {% csrf_token %}
+        <input type="text" name="title" title="제목"><br/>
+        <input type="text" name="video_id" title="비디오ID"><br/>
+        <input type="datetime-local" name="work_time" title="동작시간"><br/>
+        <select name="privacy_status"> 
+            <option value="private">비공개</option>
+            <option value="unlisted">일부공개</option>
+        </select><br/>
+        <button type="submit">추가</button>
+    </form>
+</body>
+</html>
