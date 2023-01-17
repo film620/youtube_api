@@ -9,14 +9,17 @@
 <body>
     <h1>추가 하기</h1>
     <form action="{% url 'create_onoff' %}" method="POST"> {% csrf_token %}
-        <input type="text" name="title" title="제목"><br/>
-        <input type="text" name="video_id" title="비디오ID"><br/>
-        <input type="datetime-local" name="work_time" title="동작시간"><br/>
-        <select name="privacy_status"> 
+        <p style="display: inline;">제목</p><input type="text" name="title" title="제목"><br/>
+        <p style="display: inline;">비디오ID</p><input type="text" name="video_id" title="비디오ID"><br/>
+        <P style="display: inline;">작업 시간</P><input type="datetime-local" name="work_time" title="동작시간"><br/>
+        <P style="display: inline;">상태 </P><select name="privacy_status"> 
             <option value="private">비공개</option>
             <option value="unlisted">일부공개</option>
         </select><br/>
         <button type="submit">추가</button>
     </form>
+    <p align="center">
+        <button onclick="window.history.back();">목록으로 돌아가기</button>
+    </p>
 </body>
 </html>

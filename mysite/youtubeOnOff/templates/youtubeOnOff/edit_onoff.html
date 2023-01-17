@@ -14,8 +14,9 @@
         <p style="display: inline;">비디오ID</p><input type="text" name="video_id" title="비디오ID" value={{ onoff.video_id }}><br/>
         {% load tz %}
         {% timezone 'Asia/Seoul' %}
-        <p>작업시간: {{onoff.work_time}} </p>  <!--작업시간-->
+        <p>작업시간: {{onoff.work_time|date:'Y-m-d A:h:i' }} </p>  <!--작업시간-->
         {% endtimezone %}
+        <h3 style="color:crimson "> <수정 내용을 저장 하려면 날짜 시간 재입력 필수 > </h3>
         <input type="datetime-local" name="work_time" title="동작시간" value={{ onoff.work_time }}><br/>
         {% if onoff.privacy_status == 'private' %}
         <p>현재 상태 : 비공개</p>
@@ -28,5 +29,8 @@
         </select><br/>
         <button type="submit">수정하기</button>
     </form>
+    <p align="center">
+        <button onclick="window.history.back();">목록으로 돌아가기</button>
+    </p>
 </body>
 </html>

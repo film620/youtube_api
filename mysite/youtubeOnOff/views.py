@@ -8,12 +8,6 @@ from .models import OnOff
 
 def index(request):
     on_off_list = OnOff.objects.all()
-    result = []
-
-    for idx in range(len(on_off_list)):
-        on_off_list[idx].title = "A"
-        on_off_list[idx].work_time += timedelta(hours=9)
-
     return render(request, 'youtubeOnOff/index.html', {'on_off_list': on_off_list})
 
 def create_onoff(request):

@@ -6,10 +6,23 @@
         <h2>{{ onoff.id }}</h2>
         <form action="{% url 'delete_onoff' onoff.id %}" method="POST"> {% csrf_token %}
             <p>제목 :{{ onoff.title }}</p>
-            <p>비디오ID :{{ onoff.vodeo_id }}</p>
-            <p>동작 시간 :{{ onoff.work_time }}</p>
-            <p>현재 상태 :{{ onoff.privacy_status }}</p>
+            <p>비디오ID :{{ onoff.video_id }}</p>
+            {% load tz %}
+            {% timezone 'Asia/Seoul' %}
+            <p>작업 시간 :{{ onoff.work_time|date:'Y-m-d A:h:i' }}</p>
+            {% endtimezone %}
+
+            {% if onoff.privacy_status == 'private' %}
+            <p>현재 상태 : 비공개</p>
+            {% else %}
+            <p>현재 상태 : 일부공개</p>
+            {% endif %}
+
+            <h3 style="color:crimson "> <"주의" 삭제 후에는 복구 되지 않습니다.> </h3>
             <button type="submit">삭제하기</button>
         </form>
+        <p align="center">
+            <button onclick="window.history.back();">목록으로 돌아가기</button>
+        </p>
     </body>
 </html>
